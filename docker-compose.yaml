@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  club-social-api:
+    container_name: club-social-api
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    env_file:
+      - .env
+    ports:
+      - '3000:3000'
+    depends_on:
+      - club-social-db
+    volumes:
+      - ./:/club-social-api
+
+  club-social-db:
+    container_name: club-social-db
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=club-social
+    ports:
+      - '5433:5432'

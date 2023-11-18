@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ClubsService } from './clubs.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Club } from '../../../clubs/entities/club.entity';
+import { Club } from '../../entities/club.entity';
 import { TypeOrmTestingConfig } from '../../../shared/testing-utils/typeorm-testing-config';
 import { faker } from '@faker-js/faker';
 import { NotFoundEntityMessage } from '../../../shared/errors/error-messages';
