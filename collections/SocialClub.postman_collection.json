@@ -1,0 +1,2258 @@
+{
+	"info": {
+		"_postman_id": "e2e3442f-893a-46cb-9e03-3824ed4f0d06",
+		"name": "SocialClub",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20306889",
+		"_collection_link": "https://gold-sunset-821518.postman.co/workspace/Team-Workspace~9829d352-401f-4bf5-8e00-14de136d14d2/collection/20306889-e2e3442f-893a-46cb-9e03-3824ed4f0d06?action=share&source=collection_link&creator=20306889"
+	},
+	"item": [
+		{
+			"name": "Socio",
+			"item": [
+				{
+					"name": "Add a socio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json()",
+									"pm.collectionVariables.set(\"socio_id\", data.id);",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"   pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\": \"Efren\",\n    \"email\": \"efren@correo.com\",\n    \"fechaNacimiento\": \"12\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/socios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"socios"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add a socio",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Pastas\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/categories",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"categories"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "61"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3d-WWgU78MVuCCGAEtoWscR/ngcBmk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 23:10:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Pastas\",\n    \"id\": \"34bcbefd-344b-42d9-bc68-a6110dbb28f9\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all socios",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Number of categories > ' + 0, function () {",
+									"   var data = pm.response.json()",
+									"   pm.expect(data.length).to.greaterThan(0)",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"   pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/categories",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all socios",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/socios",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"socios"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "165"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a5-U/0DrnheiNdLmtrnAMrEwio4khw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 21:16:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"072a7d21-2513-4526-9173-5a280c7e55ef\",\n        \"name\": \"New category\",\n        \"products\": []\n    },\n    {\n        \"id\": \"89b22dce-60b5-4f40-8463-485ebbd738e2\",\n        \"name\": \"New category\",\n        \"products\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get a socio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"   pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/socios/{{socio_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"socios",
+								"{{socio_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get a socio",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/socios/{{socio_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"socios",
+										"{{socio_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-Shah3igUi+t3e0kKG4QrDgbiI78\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 21:18:17 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"072a7d21-2513-4526-9173-5a280c7e55ef\",\n    \"name\": \"New category\",\n    \"products\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Get an invalid socio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get the expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The socio with the given id was not found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}socios/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{base_url}}socios"
+							],
+							"path": [
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get an invalid socio",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/socios/00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"socios",
+										"00000000-0000-0000-0000-000000000000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "75"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4b-AU3g+oVRlc3ebq+k/FcL4KX0pXs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 21:21:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The category with the given id was not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update a socio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"   pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New name of the category\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/socios/{{socio_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"socios",
+								"{{socio_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update a socio",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userName\": \"Efren New\",\n    \"email\": \"efren@correo.com\",\n    \"fechaNacimiento\": \"12\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/socios/{{socio_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"socios",
+										"{{socio_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "79"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4f-tMN7stPuxShUUhg+0ZQFeZLShaw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 21:23:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"072a7d21-2513-4526-9173-5a280c7e55ef\",\n    \"name\": \"New name of the category\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update an invalid socio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The socio with the given id was not found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"New name of the category\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/socios/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"socios",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update an invalid socio",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"New name of the category\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/categories/00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"categories",
+										"00000000-0000-0000-0000-000000000000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "75"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4b-AU3g+oVRlc3ebq+k/FcL4KX0pXs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 21:25:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The category with the given id was not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete a socio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"   pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/socios/{{socio_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"socios",
+								"{{socio_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete a socio",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/socios/{{socio_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"socios",
+										"{{socio_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"23-rSHeDNeUAi6k8y6cJOik4arbX6Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 21:26:13 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Delete an invalid socio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The socio with the given id was not found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/socios/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"socios",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete an invalid socio",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/socios/00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"socios",
+										"00000000-0000-0000-0000-000000000000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "75"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4b-AU3g+oVRlc3ebq+k/FcL4KX0pXs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 21:29:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The category with the given id was not found\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Club",
+			"item": [
+				{
+					"name": "Add a club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var data = pm.response.json()",
+									"pm.collectionVariables.set(\"club_id\", data.id);",
+									"",
+									"pm.test(\"Status code is 201\", function () {",
+									"   pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Club 1\",\n    \"fechaFundacion\": \"22\",\n    \"imagen\": \"www.imagen.com\",\n    \"descripcion\": \"descripción\"\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/clubs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clubs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add a club",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Club 1\",\n    \"fechaFundacion\": \"22\",\n    \"imagen\": \"www.imagen.com\",\n    \"descripcion\": \"descripción\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/clubs",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"clubs"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "647"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"287-00ndT7gJLMgkfzHQF2jPxRjqFd4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 22:07:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"name\": \"Pasta Spaguetti\",\n    \"description\": \"La pasta Spaguetti es un tipo de pasta larga y delgada que se utiliza comúnmente en la cocina italiana. Se caracteriza por su forma cilíndrica y su textura firme. Es muy versátil y se puede combinar con una variedad de salsas y condimentos.\",\n    \"history\": \"El origen exacto de la pasta Spaguetti es incierto, pero se cree que se originó en el sur de Italia. Se hizo popular en todo el mundo gracias a la difusión de la cocina italiana. Hoy en día, es uno de los tipos de pasta más consumidos a nivel global.\",\n    \"category\": \"89b22dce-60b5-4f40-8463-485ebbd738e2\",\n    \"id\": \"c38871ad-cdb6-4593-bc2d-fbb994b0025a\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get all clubs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Number of clubs > ' + 0, function () {",
+									"   var data = pm.response.json()",
+									"   pm.expect(data.length).to.greaterThan(0)",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"   pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/clubs",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clubs"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all clubs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/products",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "691"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b3-ZEVrp8V6R36ZFDZfvkhHMyfCtBw\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 22:15:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"c38871ad-cdb6-4593-bc2d-fbb994b0025a\",\n        \"name\": \"Pasta Spaguetti\",\n        \"description\": \"La pasta Spaguetti es un tipo de pasta larga y delgada que se utiliza comúnmente en la cocina italiana. Se caracteriza por su forma cilíndrica y su textura firme. Es muy versátil y se puede combinar con una variedad de salsas y condimentos.\",\n        \"history\": \"El origen exacto de la pasta Spaguetti es incierto, pero se cree que se originó en el sur de Italia. Se hizo popular en todo el mundo gracias a la difusión de la cocina italiana. Hoy en día, es uno de los tipos de pasta más consumidos a nivel global.\",\n        \"category\": {\n            \"id\": \"89b22dce-60b5-4f40-8463-485ebbd738e2\",\n            \"name\": \"New category\"\n        },\n        \"recipes\": []\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get a club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"   pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/clubs/{{club_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get a club",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/clubs/{{club_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"clubs",
+										"{{club_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "689"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b1-uz5yzAig6u6vC39mpt6okoNMNVQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 22:15:52 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"c38871ad-cdb6-4593-bc2d-fbb994b0025a\",\n    \"name\": \"Pasta Spaguetti\",\n    \"description\": \"La pasta Spaguetti es un tipo de pasta larga y delgada que se utiliza comúnmente en la cocina italiana. Se caracteriza por su forma cilíndrica y su textura firme. Es muy versátil y se puede combinar con una variedad de salsas y condimentos.\",\n    \"history\": \"El origen exacto de la pasta Spaguetti es incierto, pero se cree que se originó en el sur de Italia. Se hizo popular en todo el mundo gracias a la difusión de la cocina italiana. Hoy en día, es uno de los tipos de pasta más consumidos a nivel global.\",\n    \"category\": {\n        \"id\": \"89b22dce-60b5-4f40-8463-485ebbd738e2\",\n        \"name\": \"New category\"\n    },\n    \"recipes\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Get an invalid club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get the expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The club with the given id was not found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/clubs/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clubs",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get an invalid club",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/clubs/00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"clubs",
+										"00000000-0000-0000-0000-000000000000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-iQTKaPdZ40YdwkVyKYlmEufUk5M\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 22:17:31 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The product with the given id was not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update a club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"   pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Pasta Spaguetti actualizada\",\n    \"description\": \"La pasta Spaguetti es un tipo de pasta larga y delgada que se utiliza comúnmente en la cocina italiana. Se caracteriza por su forma cilíndrica y su textura firme. Es muy versátil y se puede combinar con una variedad de salsas y condimentos.\",\n    \"history\": \"El origen exacto de la pasta Spaguetti es incierto, pero se cree que se originó en el sur de Italia. Se hizo popular en todo el mundo gracias a la difusión de la cocina italiana. Hoy en día, es uno de los tipos de pasta más consumidos a nivel global.\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/products/{{product_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"products",
+								"{{product_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update a club",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Club 12\",\n    \"fechaFundacion\": \"22\",\n    \"imagen\": \"www.imagen.com\",\n    \"descripcion\": \"descripción\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/clubs/{{club_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"clubs",
+										"{{club_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "609"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"261-UYisZb3TIzci353+iPeGWj2qOA4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 22:22:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"c38871ad-cdb6-4593-bc2d-fbb994b0025a\",\n    \"name\": \"Pasta Spaguetti actualizada\",\n    \"description\": \"La pasta Spaguetti es un tipo de pasta larga y delgada que se utiliza comúnmente en la cocina italiana. Se caracteriza por su forma cilíndrica y su textura firme. Es muy versátil y se puede combinar con una variedad de salsas y condimentos.\",\n    \"history\": \"El origen exacto de la pasta Spaguetti es incierto, pero se cree que se originó en el sur de Italia. Se hizo popular en todo el mundo gracias a la difusión de la cocina italiana. Hoy en día, es uno de los tipos de pasta más consumidos a nivel global.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update an invalid club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The product with the given id was not found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Club 12\",\n    \"fechaFundacion\": \"22\",\n    \"imagen\": \"www.imagen.com\",\n    \"descripcion\": \"descripción\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/clubs/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clubs",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update an invalid club",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Club 12\",\n    \"fechaFundacion\": \"22\",\n    \"imagen\": \"www.imagen.com\",\n    \"descripcion\": \"descripción\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/clubs/00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"clubs",
+										"00000000-0000-0000-0000-000000000000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-iQTKaPdZ40YdwkVyKYlmEufUk5M\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 22:24:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The product with the given id was not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete a club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"   pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/clubs/{{club_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete a club",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/clubs/{{club_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"clubs",
+										"{{club_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 22:24:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Delete an invalid club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The club with the given id was not found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/clubs/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clubs",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete an invalid club",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/clubs/00000000-0000-0000-0000-000000000000",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"clubs",
+										"00000000-0000-0000-0000-000000000000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "74"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4a-iQTKaPdZ40YdwkVyKYlmEufUk5M\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 22:25:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The product with the given id was not found\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "SociosClubs",
+			"item": [
+				{
+					"name": "Add a socio to a club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"   pm.response.to.have.status(201);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/clubs/{{club_id3}}/socios/{{socio_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id3}}",
+								"socios",
+								"{{socio_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Add a socio to a club",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/clubs/{{club_id3}}/socios/{{socio_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"clubs",
+										"{{club_id3}}",
+										"socios",
+										"{{socio_id}}"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "674"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2a2-rpiYsbwk6ZpYdOQKqp6qXfW1deQ\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 23:51:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"fa4e28ce-896e-4cef-80e9-247dca0abe5c\",\n    \"name\": \"Picantes\",\n    \"products\": [\n        {\n            \"id\": \"a5ab7f9f-f19d-48d5-8bca-b3d0e7fb11de\",\n            \"name\": \"Pasta Spaguetti\",\n            \"description\": \"La pasta Spaguetti es un tipo de pasta larga y delgada que se utiliza comúnmente en la cocina italiana. Se caracteriza por su forma cilíndrica y su textura firme. Es muy versátil y se puede combinar con una variedad de salsas y condimentos.\",\n            \"history\": \"El origen exacto de la pasta Spaguetti es incierto, pero se cree que se originó en el sur de Italia. Se hizo popular en todo el mundo gracias a la difusión de la cocina italiana. Hoy en día, es uno de los tipos de pasta más consumidos a nivel global.\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get socios from a club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('Number of socios > ' + 0, function () {",
+									"   var data = pm.response.json()",
+									"   pm.expect(data.length).to.greaterThan(0)",
+									"});",
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"   pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/clubs/{{club_id3}}/socios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id3}}",
+								"socios"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get socios from a club",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/clubs/{{club_id3}}/socios",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"clubs",
+										"{{club_id3}}",
+										"socios"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "599"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"257-3ZjTV589+3qtVRLq4HXKatXfEpk\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 23:53:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"a5ab7f9f-f19d-48d5-8bca-b3d0e7fb11de\",\n        \"name\": \"Pasta Spaguetti\",\n        \"description\": \"La pasta Spaguetti es un tipo de pasta larga y delgada que se utiliza comúnmente en la cocina italiana. Se caracteriza por su forma cilíndrica y su textura firme. Es muy versátil y se puede combinar con una variedad de salsas y condimentos.\",\n        \"history\": \"El origen exacto de la pasta Spaguetti es incierto, pero se cree que se originó en el sur de Italia. Se hizo popular en todo el mundo gracias a la difusión de la cocina italiana. Hoy en día, es uno de los tipos de pasta más consumidos a nivel global.\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get socios from an invalid club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get the expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The club with the given id was not found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/clubs/00000000-0000-0000-0000-000000000000/socios",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clubs",
+								"00000000-0000-0000-0000-000000000000",
+								"socios"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get socios from an invalid club",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/clubs/00000000-0000-0000-0000-000000000000/socios",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"clubs",
+										"00000000-0000-0000-0000-000000000000",
+										"socios"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "75"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4b-AU3g+oVRlc3ebq+k/FcL4KX0pXs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 23:56:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The category with the given id was not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete a socio from a club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"   pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/clubs/{{club_id3}}/socios/{{socio_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clubs",
+								"{{club_id3}}",
+								"socios",
+								"{{socio_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete a socio from a club",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/clubs/{{club_id3}}/socios/{{socio_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"clubs",
+										"{{club_id3}}",
+										"socios",
+										"{{socio_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 23:54:15 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "Delete a socio from an invalid club",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {",
+									"   pm.response.to.have.status(404);",
+									"});",
+									"",
+									"pm.test(\"Get expected error message\", function () {",
+									"   var data = pm.response.json();",
+									"   pm.expect(data.message).to.eql(\"The club with the given id was not found\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/clubs/00000000-0000-0000-0000-000000000000/socios/{{socio_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"clubs",
+								"00000000-0000-0000-0000-000000000000",
+								"socios",
+								"{{socio_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete a socio from an invalid club",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/clubs/00000000-0000-0000-0000-000000000000/socios/{{socio_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"clubs",
+										"00000000-0000-0000-0000-000000000000",
+										"socios",
+										"{{socio_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "75"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4b-AU3g+oVRlc3ebq+k/FcL4KX0pXs\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 11 Nov 2023 23:57:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"The category with the given id was not found\"\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
